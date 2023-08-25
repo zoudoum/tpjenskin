@@ -36,7 +36,7 @@ pipeline {
             echo "Sending message to agent"
         }
         success {
-            echo "Sending message to agent"
+       echo "Sending message to agent"
         }
     }
 }
