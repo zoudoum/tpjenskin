@@ -2,51 +2,55 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - "master"
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - "master"
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      
-    - name: Set up JDK 17
-      uses: actions/setup-java@v2
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        
-    - name: Configure SonarQube
-      env:
-        SONAR_TOKEN: ${{ secrets.TokenSonar }}
-        SONAR_HOST_URL: ${{ secrets.UrlSonar }}
-        
-    - name: Make mvnw executable
-      run: chmod +x mvnw
-        
-    - name: Build and Test
-      run: |
-        ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent install
-    
-    - name: SonarQube Analysis
-      run: |
-        ./mvnw sonar:sonar
-      env:
-        SONAR_TOKEN: ${{ secrets.TokenSonar }} # You might need to provide the token again here
-        
-    - name: Approve Deployment
-      run: |
-        echo "Deploying into Server"
-      if: github.event_name == 'pull_request'
-    
-    - name: Send Message on Aborted/Failure/Success
-      if: always()
-      run: |
-        echo "Sending message to agent"
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Configure SonarQube
+        env:
+          SONAR_TOKEN: ${{ secrets.TokenSonar }}
+          SONAR_HOST_URL: ${{ secrets.UrlSonar }}
+
+      - name: Make mvnw executable
+        run: chmod +x mvnw
+
+      - name: Build and Test
+        run: |
+          ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent install
+
+      - name: SonarQube Analysis
+        run: |
+          ./mvnw sonar:sonar
+        env:
+          SONAR_TOKEN: ${{ secrets.TokenSonar }} # You might need to provide the token again here
+
+      - name: Approve Deployment
+        run: |
+          echo "Deploying into Server"
+        if: github.event_name == 'pull_request'
+
+      - name: Send Message on Aborted/Failure/Success
+        if: always()
+        run: |
+          echo "Sending message to agent"
+
+
 
 
 
