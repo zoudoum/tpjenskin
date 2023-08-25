@@ -20,6 +20,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Rendre le script mvnw exécutable
+      run: chmod +x mvnw
         
     - name: Build and Test
       run: |
