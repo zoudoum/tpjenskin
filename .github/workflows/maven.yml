@@ -26,7 +26,7 @@ jobs:
         with:
          host: ${{ secrets.SONARQUBE_HOST }}
          login: ${{ secrets.SONARQUBE_TOKEN }}
-         projectKey: Github-Action-Scan
+         projectKey: master-sir-2023
 
       - name: Make mvnw executable
         run: chmod +x mvnw
