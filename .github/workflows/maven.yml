@@ -31,25 +31,20 @@ jobs:
         run: chmod +x mvnw
 
       - name: Build and Test
-        run: |
-          ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent install
+        run: ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent install
 
       - name: SonarQube Analysis
-        run: |
-          ./mvnw sonar:sonar
+        run: ./mvnw sonar:sonar
         env:
           SONAR_TOKEN: ${{ secrets.TokenSonar }} # You might need to provide the token again here
 
       - name: Approve Deployment
-        run: |
-          echo "Deploying into Server"
+        run: echo "Deploying into Server"
         if: github.event_name == 'pull_request'
 
       - name: Send Message on Aborted/Failure/Success
+        run: echo "Sending message to agent"
         if: always()
-        run: |
-          echo "Sending message to agent"
-
 
 
 
