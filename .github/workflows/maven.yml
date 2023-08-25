@@ -20,6 +20,10 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Configure SonarQube
+      env:
+        SONAR_TOKEN: ${{ secrets.TokenSonar }}
+        SONAR_HOST_URL: ${{ secrets.UrlSonar }}
     - name: Rendre le script mvnw exécutable
       run: chmod +x mvnw
         
