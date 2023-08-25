@@ -21,11 +21,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Configure SonarQube
-        env:
-          SONAR_TOKEN: ${{ secrets.TOKENSONAR }}
-          SONAR_HOST_URL: ${{ secrets.URLSONAR }}
-        run: |
+      - name: SonarQube Scan
+        uses: kitabisa/sonarqube-action@v1.2.0
+        with:
+         host: ${{ secrets.SONARQUBE_HOST }}
+         login: ${{ secrets.SONARQUBE_TOKEN }}
+         projectKey: Github-Action-Scan
 
       - name: Make mvnw executable
         run: chmod +x mvnw
