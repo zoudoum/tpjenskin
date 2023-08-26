@@ -37,12 +37,11 @@ jobs:
       - name: SonarQube Analysis
         run: ./mvnw sonar:sonar
         env:
-          SONAR_TOKEN: ${{ secrets.TokenSonar }} # You might need to provide the token again here
+          SONAR_TOKEN: ${{ secrets.TokenSonar }} 
 
       - name: Approve Deployment
         run: echo "Deploying into Server"
         if: github.event_name == 'pull_request'
-
       - name: Send Message on Aborted/Failure/Success
         run: echo "Sending message to agent"
         if: always()
