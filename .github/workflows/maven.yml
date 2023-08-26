@@ -37,7 +37,7 @@ jobs:
       - name: SonarQube Analysis
         run: ./mvnw sonar:sonar
         env:
-          SONAR_TOKEN: ${{ secrets.TokenSonar }} # You might need to provide the token again here
+          SONAR_TOKEN: ${{ secrets.TokenSonar }} 
 
       - name: Approve Deployment
         run: echo "Deploying into Server"
