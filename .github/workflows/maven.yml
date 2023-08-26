@@ -42,7 +42,6 @@ jobs:
       - name: Approve Deployment
         run: echo "Deploying into Server"
         if: github.event_name == 'pull_request'
-
       - name: Send Message on Aborted/Failure/Success
         run: echo "Sending message to agent"
         if: always()
