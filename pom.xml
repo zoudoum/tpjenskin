@@ -56,9 +56,7 @@
 			<properties>
 				<!-- Optional URL to server. Default value is http://localhost:9000 -->
 				<sonar.host.url>
-
-					http://172.31.32.1:9000
-
+					https://8775-41-82-49-42.ngrok-free.app
 				</sonar.host.url>
 				<sonar.login>admin</sonar.login>
 				<sonar.password>Doumzoro</sonar.password>
